@@ -19,7 +19,7 @@ Lakukan sekali saja saat pertama kali mengambil project.
 
 ```bash
 git https://github.com/Harisnoresst/TravelGo.git
-cd TarvelGo
+cd TravelGo
 ```
 
 ---
