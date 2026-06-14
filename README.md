@@ -18,11 +18,8 @@ Branch yang digunakan:
 Lakukan sekali saja saat pertama kali mengambil project.
 
 ```bash
-<<<<<<< HEAD
 git https://github.com/Harisnoresst/TravelGo.git
-=======
 git clone https://github.com/Harisnoresst/TravelGo.git
->>>>>>> e8b50b4 (Readme)
 cd TravelGo
 ```
 
