@@ -1,3 +1,10 @@
+Berikut adalah pembaruan file `README.md` yang sudah disesuaikan dengan arsitektur terbaru (penghapusan fitur *Flight*, penambahan fitur *Transport* darat, *Social/Group*, *Split Bill*, *Crowd Level*, dan *Gamification*), serta perbaikan pada error *merge conflict* di baris paling bawah dan perbaikan *typo* pada *command clone*.
+
+Kamu bisa langsung *copy-paste* teks di bawah ini ke dalam file `README.md` di repositori kalian:
+
+---
+
+```markdown
 # TravelGo - Team Workflow Guide
 
 ## Repository Rules
@@ -6,10 +13,10 @@ Branch yang digunakan:
 
 * `main` → Final / Production
 * `dev` → Development
-* `frontend-1` → Faishal (User Experience)
-* `frontend-2` → Hamzah (Dashboard & Admin)
-* `backend-1` → Haikal (Auth & User Module)
-* `backend-2` → Haris (Booking & Transaction Module)
+* `frontend-1` → Faishal (User Experience & Social Features)
+* `frontend-2` → Hamzah (Dashboard & Admin Monitoring)
+* `backend-1` → Haikal (Auth, User & Social Module)
+* `backend-2` → Haris (Booking, Transaction & Analytics Module)
 
 ---
 
@@ -18,9 +25,9 @@ Branch yang digunakan:
 Lakukan sekali saja saat pertama kali mengambil project.
 
 ```bash
-git https://github.com/Harisnoresst/TravelGo.git
-git clone https://github.com/Harisnoresst/TravelGo.git
-cd TravelGo
+git clone [https://github.com/Harisnoresst/Project-Website-Pegi.git](https://github.com/Harisnoresst/Project-Website-Pegi.git)
+cd Project-Website-Pegi
+
 ```
 
 ---
@@ -32,6 +39,7 @@ Sebelum mulai bekerja, selalu update branch `dev`.
 ```bash
 git checkout dev
 git pull origin dev
+
 ```
 
 ---
@@ -45,20 +53,27 @@ Tugas:
 * RegisterPage
 * HotelSearchPage
 * HotelDetailPage
-* FlightSearchPage
 * DestinationSearchPage
 * DestinationDetailPage
+* TransportSearchPage (Baru)
+* TravelPartnerPage (Baru)
+* GroupListPage (Baru)
+* GroupDetailPage (Baru)
+* ChatPage (Baru)
+* SplitBillPage (Baru)
 
 Masuk ke branch:
 
 ```bash
 git checkout frontend-1
+
 ```
 
 Jika branch belum ada di lokal:
 
 ```bash
 git checkout -b frontend-1 origin/frontend-1
+
 ```
 
 ---
@@ -67,7 +82,7 @@ git checkout -b frontend-1 origin/frontend-1
 
 Tugas:
 
-* ProfilePage
+* ProfilePage (Termasuk Gamification/Badge)
 * WishlistPage
 * BookingHistoryPage
 * AdminDashboard
@@ -75,70 +90,82 @@ Tugas:
 * AdminHotelPage
 * AdminDestinationPage
 * AdminPromoPage
+* AdminTransportPage (Baru)
+* AdminGroupPage (Baru)
+* AdminMonitoringPage (Baru)
 
 Masuk ke branch:
 
 ```bash
 git checkout frontend-2
+
 ```
 
 Jika branch belum ada di lokal:
 
 ```bash
 git checkout -b frontend-2 origin/frontend-2
+
 ```
 
 ---
 
 # BACKEND 1 (Haikal)
 
-Tugas:
+Tugas (Controller & Service):
 
 * AuthController
 * UserController
 * WishlistController
 * ReviewController
-* AuthService
-* UserService
-* WishlistService
-* ReviewService
+* MatchingController (Baru)
+* GroupController (Baru)
+* ChatController (Baru)
+* BadgeService (Baru - Gamification)
 
 Masuk ke branch:
 
 ```bash
 git checkout backend-1
+
 ```
 
 Jika branch belum ada di lokal:
 
 ```bash
 git checkout -b backend-1 origin/backend-1
+
 ```
 
 ---
 
 # BACKEND 2 (Haris)
 
-Tugas:
+Tugas (Controller & Service):
 
 * HotelController
-* FlightController
 * DestinationController
+* TransportController (Baru)
 * BookingController
 * PaymentController
 * PromoController
 * InvoiceController
+* SplitBillController (Baru)
+* CrowdCalculationService (Baru)
+* MonitoringService (Baru)
 
 Masuk ke branch:
 
 ```bash
 git checkout backend-2
+
 ```
 
 Jika branch belum ada di lokal:
 
 ```bash
 git checkout -b backend-2 origin/backend-2
+
 ```
 
 ---
@@ -148,15 +175,17 @@ git checkout -b backend-2 origin/backend-2
 ```bash
 git add .
 git commit -m "feat: nama fitur"
-git push
+git push origin <nama-branch-kamu>
+
 ```
 
 Contoh:
 
 ```bash
 git add .
-git commit -m "feat: add hotel search page"
-git push
+git commit -m "feat: add transport search page"
+git push origin frontend-1
+
 ```
 
 ---
@@ -168,22 +197,24 @@ git push
 ```bash
 git checkout dev
 git pull origin dev
+
 ```
 
 2. Masuk ke branch masing-masing
 
 ```bash
 git checkout frontend-1
+
 ```
 
 3. Kerjakan fitur
-
 4. Simpan perubahan
 
 ```bash
 git add .
 git commit -m "feat: nama fitur"
-git push
+git push origin <nama-branch-kamu>
+
 ```
 
 5. Buat Pull Request ke `dev`
@@ -204,6 +235,7 @@ frontend-1 -> dev
 frontend-2 -> dev
 backend-1 -> dev
 backend-2 -> dev
+
 ```
 
 5. Setelah direview, merge ke `dev`
@@ -224,6 +256,7 @@ Contoh:
 feat: add login page
 fix: booking validation bug
 docs: update README
+
 ```
 
 ---
@@ -238,23 +271,24 @@ Axios Service
 Spring Boot API
       ↓
 MySQL Database
+
 ```
 
 ---
 
 # Team
 
-| Nama    | Divisi     |
-| ------- | ---------- |
+| Nama | Divisi |
+| --- | --- |
 | Faishal | Frontend 1 |
-| Hamzah  | Frontend 2 |
-| Haikal  | Backend 1  |
-| Haris   | Backend 2  |
+| Hamzah | Frontend 2 |
+| Haikal | Backend 1 |
+| Haris | Backend 2 |
 
 ---
 
-<<<<<<< HEAD
 Status: Development
-=======
-Status:Development
->>>>>>> e8b50b4 (Readme)
+
+```
+
+```
