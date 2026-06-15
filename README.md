@@ -1,5 +1,7 @@
 # Pegi - Team Workflow & Architecture Guide
 
+Selamat datang di repositori TravelGo Kelompok 1! Proyek ini menggunakan arsitektur **Monorepo**, di mana kode Frontend dan Backend disimpan dalam satu repositori yang sama tetapi dipisah ke dalam dua direktori utama: `/frontend` dan `/backend`.
+
 ## Struktur Folder Utama
 
 ```text
@@ -59,16 +61,22 @@ Jalankan deretan perintah ini **sekali saja** saat pertama kali mengunduh proyek
 git clone [https://github.com/Harisnoresst/Project-Website-Pegi.git](https://github.com/Harisnoresst/Project-Website-Pegi.git)
 cd Project-Website-Pegi
 
-# 2. Setup Frontend (Bagi Tim Frontend)
-cd frontend
-npm install    # Menginstal semua library (React, Bootstrap, Axios)
-cd ..
-
-# 3. Masuk ke branch utama dan tarik data terbaru
+# 2. Masuk ke branch utama dan tarik data terbaru
 git checkout dev
 git pull origin dev
 
-# 4. Buat dan pindah ke branch pribadi masing-masing (Contoh untuk Faishal)
+# 3A. Setup KHUSUS Tim Frontend (Faishal & Hamzah)
+cd frontend
+npm install    # Menginstal semua library React, Bootstrap, Axios
+cd ..
+
+# 3B. Setup KHUSUS Tim Backend (Haikal & Haris)
+# (Pastikan XAMPP/MySQL menyala dan database pegi_db sudah dibuat)
+cd backend
+mvn clean install -DskipTests    # Menginstal semua library Spring Boot
+cd ..
+
+# 4. Buat dan pindah ke branch pribadi masing-masing (Contoh: Faishal)
 git checkout -b frontend-faishal
 
 ```
@@ -210,7 +218,7 @@ git pull origin dev
 ### 2. SAAT NGODING: Jalankan Proyek
 
 * **Tim Frontend:** Masuk ke folder `frontend` lalu jalankan `npm run dev`.
-* **Tim Backend:** Buka folder `backend` di IDE (VS Code / IntelliJ) lalu jalankan aplikasi Spring Boot.
+* **Tim Backend:** Buka terminal, masuk ke folder `backend`, lalu jalankan `mvn spring-boot:run`. (Atau jalankan langsung dari IDE VS Code / IntelliJ).
 
 ### 3. SELESAI NGODING: Simpan & Push ke Branch Pribadi
 
