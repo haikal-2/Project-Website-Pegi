@@ -27,16 +27,16 @@ const ProfilePage: React.FC = () => {
         </div>
 
         <nav className="sidebar-nav">
-          <a href="#profil" className="nav-item active">
+          <a href="/profil" className="nav-item active">
             <FaUserCircle className="nav-icon" /> Profil Saya
           </a>
-          <a href="#riwayat" className="nav-item">
+          <a href="/history" className="nav-item">
             <FaHistory className="nav-icon" /> Riwayat Booking
           </a>
-          <a href="#wishlist" className="nav-item">
+          <a href="/wishlist" className="nav-item">
             <FaHeart className="nav-icon" /> Wishlist Saya
           </a>
-          <a href="#grup" className="nav-item">
+          <a href="/grup" className="nav-item">
             <FaUsers className="nav-icon" /> Grup Perjalanan Saya
           </a>
         </nav>
