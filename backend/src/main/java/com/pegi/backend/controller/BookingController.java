@@ -1,7 +1,9 @@
 package com.pegi.backend.controller;
 
 import com.pegi.backend.entity.Booking;
+import com.pegi.backend.services.TicketService;
 import com.pegi.backend.entity.Invoice;
+import com.pegi.backend.entity.Ticket;
 import com.pegi.backend.services.BookingService;
 import com.pegi.backend.services.PromoService;      
 import com.pegi.backend.services.InvoiceService;    
@@ -24,12 +26,18 @@ public class BookingController {
     @Autowired
     private InvoiceService invoiceService; 
 
+    @Autowired
+    private TicketService ticketService;
     
     @GetMapping
     public List<Booking> getAllBookings() {
         return bookingService.getAllBookings();
     }
 
+    @GetMapping("/{bookingId}/tickets")
+    public List<Ticket> getTicketsForBooking(@PathVariable Long bookingId) {
+        return ticketService.getTicketsByBooking(bookingId);
+    }
     
     @PostMapping
     @Transactional 
@@ -43,10 +51,7 @@ public class BookingController {
             bookingRequest.setTotalPrice(discountedPrice);
         }
 
-        
         Booking savedBooking = bookingService.createBooking(bookingRequest);
-
-        
         invoiceService.createInvoice(savedBooking);
 
         
