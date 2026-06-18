@@ -1,12 +1,13 @@
 package com.pegi.backend.controller;
 
 import com.pegi.backend.entity.Booking;
-import com.pegi.backend.services.TicketService;
 import com.pegi.backend.entity.Invoice;
 import com.pegi.backend.entity.Ticket;
-import com.pegi.backend.services.BookingService;
-import com.pegi.backend.services.PromoService;      
-import com.pegi.backend.services.InvoiceService;    
+import com.pegi.backend.service.BookingService;
+import com.pegi.backend.service.InvoiceService;
+import com.pegi.backend.service.PromoService;
+import com.pegi.backend.service.TicketService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional; 
 import org.springframework.web.bind.annotation.*;

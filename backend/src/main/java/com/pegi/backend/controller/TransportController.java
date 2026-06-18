@@ -1,7 +1,8 @@
 package com.pegi.backend.controller;
 
 import com.pegi.backend.entity.Transport;
-import com.pegi.backend.services.TransportService;
+import com.pegi.backend.service.TransportService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

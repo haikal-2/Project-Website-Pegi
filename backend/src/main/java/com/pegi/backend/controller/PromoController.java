@@ -1,7 +1,8 @@
 package com.pegi.backend.controller;
 
 import com.pegi.backend.entity.Promo;
-import com.pegi.backend.services.PromoService;
+import com.pegi.backend.service.PromoService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

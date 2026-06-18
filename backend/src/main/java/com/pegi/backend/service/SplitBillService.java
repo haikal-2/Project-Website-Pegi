@@ -1,4 +1,4 @@
-package com.pegi.backend.services;
+package com.pegi.backend.service;
 
 import com.pegi.backend.entity.BillMember;
 import com.pegi.backend.entity.SplitBill;

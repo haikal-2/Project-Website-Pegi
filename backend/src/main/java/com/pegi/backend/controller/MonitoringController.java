@@ -1,7 +1,8 @@
 package com.pegi.backend.controller;
 
 import com.pegi.backend.dto.DashboardStats;
-import com.pegi.backend.services.MonitoringService;
+import com.pegi.backend.service.MonitoringService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

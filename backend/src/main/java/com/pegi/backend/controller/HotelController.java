@@ -1,7 +1,8 @@
 package com.pegi.backend.controller;
 
 import com.pegi.backend.entity.Hotel;
-import com.pegi.backend.services.HotelService;
+import com.pegi.backend.service.HotelService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

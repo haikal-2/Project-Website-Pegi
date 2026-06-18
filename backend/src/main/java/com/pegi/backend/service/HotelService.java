@@ -1,4 +1,4 @@
-package com.pegi.backend.services;
+package com.pegi.backend.service;
 
 import com.pegi.backend.entity.Hotel;
 import com.pegi.backend.repository.HotelRepository;

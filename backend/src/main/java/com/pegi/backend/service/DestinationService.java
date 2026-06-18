@@ -1,4 +1,4 @@
-package com.pegi.backend.services;
+package com.pegi.backend.service;
 
 import com.pegi.backend.entity.Destination;
 import com.pegi.backend.repository.DestinationRepository;

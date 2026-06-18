@@ -1,8 +1,9 @@
 package com.pegi.backend.controller;
 
 import com.pegi.backend.entity.Destination;
-import com.pegi.backend.services.DestinationService;
-import com.pegi.backend.services.CrowdCalculationService; 
+import com.pegi.backend.service.CrowdCalculationService;
+import com.pegi.backend.service.DestinationService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,8 @@
 package com.pegi.backend.controller;
 
 import com.pegi.backend.entity.Payment;
-import com.pegi.backend.services.PaymentService;
+import com.pegi.backend.service.PaymentService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
