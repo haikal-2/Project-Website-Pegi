@@ -59,6 +59,20 @@ const AdminDestinationPage: React.FC = () => {
   };
 
   const handleSave = () => {
+
+    if (
+      !formData.name?.trim() ||
+      !formData.location?.trim() ||
+      !formData.category ||
+      !formData.price?.trim() ||
+      !formData.crowd ||
+      formData.rating === undefined || formData.rating === null || formData.rating < 0 ||
+      !formData.img
+    ) {
+      alert("Peringatan: Harap lengkapi semua kolom dan unggah foto thumbnail sebelum menyimpan!");
+      return; // Hentikan proses simpan jika ada yang kosong
+    }
+
     if (modalType === "add") {
       const newDest = {
         ...formData,

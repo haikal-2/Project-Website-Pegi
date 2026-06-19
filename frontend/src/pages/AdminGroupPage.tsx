@@ -55,6 +55,18 @@ const AdminGroupPage: React.FC = () => {
   };
 
   const handleSave = () => {
+
+    if (
+      !formData.name?.trim() ||
+      !formData.leaderName?.trim() ||
+      !formData.destination?.trim() ||
+      !formData.maxMembers || formData.maxMembers <= 0 ||
+      !formData.status
+    ) {
+      alert("Peringatan: Harap lengkapi semua kolom dengan benar sebelum menyimpan!");
+      return;
+    }
+
     if (modalType === 'add') {
       const newGroup = {
         ...formData,

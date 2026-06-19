@@ -60,6 +60,21 @@ const AdminTransportPage: React.FC = () => {
   };
 
   const handleSave = () => {
+
+    if (
+      !formData.name?.trim() ||
+      !formData.detail?.trim() ||
+      !formData.type ||
+      !formData.route?.trim() ||
+      !formData.price?.trim() ||
+      !formData.capacity?.trim() ||
+      !formData.status ||
+      !formData.img
+    ) {
+      alert("Peringatan: Harap lengkapi semua kolom dan unggah foto armada sebelum menyimpan!");
+      return; 
+    }
+
     if (modalType === 'add') {
       const newTransport = { 
         ...formData, 
@@ -146,6 +161,8 @@ const AdminTransportPage: React.FC = () => {
 
           {/* TABLE CONTAINER */}
           <div className="table-card-container">
+            <div className="table-responsive-wrapper">
+              <div className="table-scroll-content">
             <table className="data-table">
               <thead>
                 <tr>
@@ -198,8 +215,9 @@ const AdminTransportPage: React.FC = () => {
                 <button className="page-btn">{'>'}</button>
               </div>
             </div>
+            </div>
           </div>
-
+          </div>
         </div>
       </main>
 
