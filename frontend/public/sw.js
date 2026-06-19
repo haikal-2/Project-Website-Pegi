@@ -7,6 +7,7 @@ const urlsToCache = [
   "/favicon.svg",
   "/icons.svg"
 ];
+
 // Install event - cache resources
 self.addEventListener("install", (event) => {
   console.log("Service Worker: Installed");
@@ -46,65 +47,65 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// Fetch event - serve cached content when offline
+// Fetch event - Strategi dinamis (Network-First untuk HTML, Cache-First untuk Aset)
 self.addEventListener("fetch", (event) => {
-  // Skip non-GET requests
-  if (event.request.method !== "GET") return;
-
-  // Skip chrome-extension requests
-  if (event.request.url.startsWith("chrome-extension://")) return;
+  // Skip non-GET requests dan ekstensi Chrome
+  if (event.request.method !== "GET" || event.request.url.startsWith("chrome-extension://")) return;
 
   // Skip external URLs (non-same-origin)
   const url = new URL(event.request.url);
   if (url.origin !== location.origin) return;
 
+  if (event.request.mode === "navigate" || event.request.headers.get("accept").includes("text/html")) {
+    event.respondWith(
+      fetch(event.request)
+        .then((networkResponse) => {
+          // Jika berhasil fetch dari server, simpan versi terbarunya ke cache
+          return caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, networkResponse.clone());
+            return networkResponse;
+          });
+        })
+        .catch(() => {
+          
+          console.log("Service Worker: Offline mode, serving cached HTML");
+          return caches.match(event.request).then((cachedResponse) => {
+             
+             return cachedResponse || caches.match("/index.html");
+          });
+        })
+    );
+    return; 
+  }
+  
   event.respondWith(
-    caches.match(event.request).then((response) => {
+    caches.match(event.request).then((cachedResponse) => {
       // Return cached version if exists
-      if (response) {
-        console.log("Service Worker: Serving from cache", event.request.url);
-        return response;
+      if (cachedResponse) {
+        return cachedResponse;
       }
 
       // Otherwise fetch from network
       return fetch(event.request)
-        .then((response) => {
+        .then((networkResponse) => {
           // Check if we received a valid response
-          if (!response || response.status !== 200 || response.type !== "basic") {
-            return response;
+          if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== "basic") {
+            return networkResponse;
           }
 
-          // Clone the response
-          const responseToCache = response.clone();
-
+          // Clone dan simpan ke cache
+          const responseToCache = networkResponse.clone();
           caches.open(CACHE_NAME).then((cache) => {
-            // Add to cache for future visits
-            console.log("Service Worker: Caching new resource", event.request.url);
             cache.put(event.request, responseToCache);
           });
 
-          return response;
+          return networkResponse;
         })
-        .catch((error) => {
-          console.log("Service Worker: Fetch failed, serving fallback", error);
-          // If both cache and network fail, show offline page
-          // For navigation requests, return cached index.html
-          if (event.request.mode === "navigate") {
-            return caches.match("./index.html");
-          }
-
-          // For CSS and JS, return cached versions
-          if (event.request.url.includes(".css")) {
-            return caches.match("./style.css");
-          }
-
-          // For other requests, return generic offline response
-          return new Response("Offline", {
+        .catch(() => {
+          // Fallback opsional jika gambar/css gagal dimuat dan tidak ada di cache
+          return new Response("Offline resource not found", {
             status: 503,
-            statusText: "Service Unavailable",
-            headers: new Headers({
-              "Content-Type": "text/plain",
-            }),
+            headers: new Headers({ "Content-Type": "text/plain" }),
           });
         });
     })

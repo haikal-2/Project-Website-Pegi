@@ -1,0 +1,406 @@
+/* Layout Dasar (Sama dengan ProfilePage) */
+.profile-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  font-family: "Inter", sans-serif;
+}
+
+.profile-sidebar {
+  width: 280px;
+  background-color: #ffffff;
+  border-right: 1px solid #eaeaea;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 20px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 10;
+}
+
+.sidebar-header {
+  margin-bottom: 25px;
+}
+.sidebar-subtitle {
+  font-size: 0.75rem;
+  color: #888;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.sidebar-title {
+  font-size: 1.25rem;
+  color: #4338ca;
+  margin-top: 5px;
+}
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  color: #555;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.nav-item:hover {
+  background-color: #f1f3f9;
+  color: #6366f1;
+}
+.nav-item.active {
+  background-color: #6366f1;
+  color: #ffffff;
+}
+
+.btn-back {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  border-top: 1px solid #eaeaea;
+  padding: 20px 0 10px 0;
+  width: 100%;
+  color: #555;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: auto;
+  transition: 0.2s;
+}
+.btn-back:hover {
+  color: #6366f1;
+}
+
+/* Konten Utama Riwayat Booking */
+.profile-main {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.main-container {
+  width: 100%;
+  max-width: none;
+}
+
+.main-header h1 {
+  font-size: 1.75rem;
+  color: #1a1a1a;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+.main-header p {
+  color: #666;
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+}
+
+/* Filter Tabs */
+.filter-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 8px 20px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  background-color: #ffffff;
+  color: #444;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  border-color: #6366f1;
+  color: #6366f1;
+}
+.filter-btn.active {
+  background-color: #6366f1;
+  border-color: #6366f1;
+  color: #ffffff;
+}
+
+/* Card Booking */
+.booking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.booking-card {
+  background-color: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  gap: 24px;
+  transition: box-shadow 0.2s;
+}
+
+.booking-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+/* Gambar Kiri */
+.booking-image {
+  width: 220px;
+  height: 140px;
+  flex-shrink: 0;
+}
+
+.booking-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Info Tengah */
+.booking-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.category-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #6366f1;
+  letter-spacing: 0.5px;
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.badge-green {
+  background-color: #dcfce7;
+  color: #166534;
+}
+.badge-yellow {
+  background-color: #fef08a;
+  color: #854d0e;
+}
+
+.booking-title {
+  font-size: 1.15rem;
+  color: #1a1a1a;
+  font-weight: 700;
+  margin-bottom: 4px;
+  white-space: normal;
+  word-wrap: break-word;
+}
+.booking-id {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 16px;
+}
+
+.info-footer {
+  display: flex;
+  gap: 20px;
+  font-size: 0.85rem;
+  color: #555;
+  font-weight: 500;
+  flex-wrap: wrap;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.icon-grey {
+  color: #888;
+}
+.text-yellow {
+  color: #f59e0b;
+}
+
+/* Aksi Kanan (Harga & Tombol) */
+.booking-action {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: right;
+  border-left: 1px dashed #eaeaea;
+  padding-left: 24px;
+  flex-shrink: 0;
+}
+
+.price-label {
+  font-size: 0.75rem;
+  color: #888;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.price-value {
+  font-size: 1.4rem;
+  color: #6366f1;
+  font-weight: 700;
+}
+
+.btn-action {
+  width: 100%;
+  background-color: #8b5cf6;
+  color: white;
+  border: none;
+  padding: 10px 0;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-action:hover {
+  background-color: #7c3aed;
+}
+
+/* Load More */
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.btn-load-more {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: transparent;
+  border: 1.5px solid #6366f1;
+  color: #6366f1;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-load-more:hover {
+  background-color: #eef2ff;
+}
+
+/* Untuk Tablet & Laptop Kecil */
+@media (max-width: 1024px) {
+  .profile-main {
+    padding: 30px;
+  }
+
+  .booking-card {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .booking-card {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .booking-image {
+    width: 100%;
+    height: 180px;
+  }
+
+  .booking-action {
+    width: 100%;
+    border-left: none;
+    border-top: 1px dashed #eaeaea;
+    padding-left: 0;
+    padding-top: 16px;
+    flex-direction: row; /* Mengubah tombol dan harga berdampingan di tablet */
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .btn-action {
+    width: auto;
+    padding: 10px 24px;
+  }
+}
+
+/* Untuk Mobile / HP */
+@media (max-width: 768px) {
+  .profile-layout {
+    flex-direction: column;
+  }
+
+  /* Sidebar berubah jadi Menu Atas yang bisa di-scroll geser ke samping */
+  .profile-sidebar {
+    width: 100%;
+    height: auto;
+    padding: 20px 20px 10px 20px;
+    border-right: none;
+    border-bottom: 1px solid #eaeaea;
+    position: relative;
+  }
+  .sidebar-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+  .sidebar-nav::-webkit-scrollbar {
+    display: none;
+  }
+  .nav-item {
+    white-space: nowrap;
+    font-size: 0.9rem;
+  }
+  .btn-back {
+    display: none;
+  }
+
+  .profile-main {
+    padding: 20px 16px;
+  }
+  .main-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .booking-image {
+    height: 160px;
+  }
+
+  /* Area tombol aksi memenuhi lebar layar di HP */
+  .booking-action {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .btn-action {
+    width: 100%;
+  }
+}
