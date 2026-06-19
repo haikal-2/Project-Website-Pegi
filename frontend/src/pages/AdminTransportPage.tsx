@@ -11,7 +11,7 @@ import './AdminTransportPage.css';
 interface Transport {
   id: string;
   name: string;
-  detail: string; // Misal: Plat nomor atau Kelas (B 7123 VGA)
+  detail: string; 
   type: 'BUS' | 'KERETA' | 'TRAVEL' | 'SHUTTLE';
   route: string;
   price: string;
