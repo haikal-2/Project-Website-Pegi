@@ -24,6 +24,7 @@ import AdminPromoPage from "./pages/AdminPromoPage";
 import AdminTransportPage from "./pages/AdminTransportPage";
 import AdminGroupPage from "./pages/AdminGroupPage";
 import AdminMonitoringPage from "./pages/AdminMonitoringPage";
+import AdminPaymentPage from "./pages/AdminPaymentPage";
 
 function App() {
   const path = window.location.pathname.toLowerCase();
@@ -51,6 +52,7 @@ function App() {
   if (path === "/admin/transport") return <AdminTransportPage />;
   if (path === "/admin/groups") return <AdminGroupPage />;
   if (path === "/admin/monitoring") return <AdminMonitoringPage />;
+  if (path === "/admin/payments") return <AdminPaymentPage />;
 
   return <HomePage />;
 }

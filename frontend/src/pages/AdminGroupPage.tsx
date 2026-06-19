@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { 
- FaMapMarkerAlt, FaUserPlus, 
+ FaPlus, FaMapMarkerAlt, FaUserPlus, 
   FaCommentAlt, FaCheck, FaExclamationTriangle, FaEdit, FaTrash 
 } from 'react-icons/fa';
 import AdminSidebar from '../components/AdminSidebar';
@@ -32,7 +32,6 @@ const AdminGroupPage: React.FC = () => {
     { id: '3', name: 'Dubai Luxury Trip', createdAt: 'Dibuat 20 Des 2023', img: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=150&q=80', leaderName: 'Andi Wijaya', leaderTier: 'Platinum Member', currentMembers: 10, maxMembers: 10, destination: 'Dubai, UAE', status: 'Selesai' }
   ]);
 
-  // --- STATE MODAL CRUD ---
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState<'add' | 'edit'>('add');
   const [formData, setFormData] = useState<Partial<TourGroup>>({});
@@ -56,6 +55,18 @@ const AdminGroupPage: React.FC = () => {
   };
 
   const handleSave = () => {
+
+    if (
+      !formData.name?.trim() ||
+      !formData.leaderName?.trim() ||
+      !formData.destination?.trim() ||
+      !formData.maxMembers || formData.maxMembers <= 0 ||
+      !formData.status
+    ) {
+      alert("Peringatan: Harap lengkapi semua kolom dengan benar sebelum menyimpan!");
+      return;
+    }
+
     if (modalType === 'add') {
       const newGroup = {
         ...formData,
@@ -101,7 +112,10 @@ const AdminGroupPage: React.FC = () => {
                 <h1>Manajemen Grup Wisata</h1>
                 <p>Pantau dan kelola aktivitas komunitas dalam ekosistem perjalanan Anda secara real-time.</p>
               </div>
-            </div>
+              <button className="btn-primary" onClick={handleOpenAdd}>
+                <FaPlus /> Buat Grup Baru
+              </button>
+          </div>
 
             <div className="filter-bar-group">
               <span className="text-gray fw-bold">Filter:</span>
