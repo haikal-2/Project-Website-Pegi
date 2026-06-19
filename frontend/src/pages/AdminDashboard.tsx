@@ -52,16 +52,21 @@ const AdminDashboard: React.FC = () => {
             <p>Laporan sistem menunjukkan performa platform stabil dengan kenaikan trafik 12% pagi ini.</p>
           </div>
 
-          {/* 1. Stats Row */}
           <div className="stats-grid">
             {stats.map((stat, idx) => (
               <div key={idx} className="stat-card">
-                <div className="stat-header">
-                  <div className={`stat-icon-wrapper ${stat.color}`}>{stat.icon}</div>
-                  <span className={`stat-percent ${stat.isPositive ? "text-green" : "text-yellow"}`}></span>
+                
+                {/* Ikon di sebelah kiri */}
+                <div className={`stat-icon-wrapper ${stat.color}`}>
+                  {stat.icon}
                 </div>
-                <p className="stat-title">{stat.title}</p>
-                <h2 className="stat-value">{stat.value}</h2>
+                
+                {/* Teks dan Angka dibungkus agar bisa tersusun atas-bawah */}
+                <div className="stat-details">
+                  <p className="stat-title">{stat.title}</p>
+                  <h2 className="stat-value">{stat.value}</h2>
+                </div>
+
               </div>
             ))}
           </div>

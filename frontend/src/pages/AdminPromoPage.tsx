@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
-  FaBullhorn, FaSearch, FaBolt, 
-  FaCalendarAlt, FaTicketAlt, FaBullseye, FaTrash 
+  FaBullhorn, FaSearch, 
+  FaTrash 
 } from 'react-icons/fa';
 import AdminSidebar from '../components/AdminSidebar';
 import AdminTopbar from '../components/AdminTopbar';
@@ -27,7 +27,7 @@ const AdminPromoPage: React.FC = () => {
   const [categoryFilter, setCategoryFilter] = useState('Semua Kategori');
   const [statusFilter, setStatusFilter] = useState('Semua Status');
 
-  // --- DATA STATE (Bisa Ditambah/Diedit/Dihapus) ---
+  // --- DATA STATE ---
   const [promos, setPromos] = useState<PromoCard[]>([
     { id: '1', title: 'Liburan Hemat Awal Tahun', status: 'Aktif', code: 'PEGIHEMAT24', category: 'Tiket Pesawat', discount: '25% OFF', validUntil: '31 Jan 2024', usageCount: 450, usageLimit: 1000, img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=150&q=80' },
     { id: '2', title: 'Luxury Staycation Bali', status: 'Draft', code: 'BALILUX100', category: 'Hotel', discount: 'Rp 1.500.000', validUntil: '15 Feb 2024', usageCount: 0, usageLimit: 500, img: 'https://images.unsplash.com/photo-1542314831-c6a4d14d8628?auto=format&fit=crop&w=150&q=80' },
@@ -40,34 +40,45 @@ const AdminPromoPage: React.FC = () => {
   const [modalType, setModalType] = useState<'add' | 'edit'>('add');
   const [formData, setFormData] = useState<Partial<PromoCard>>({});
 
-  // Buka Modal Tambah Data
   const handleOpenAdd = () => {
     setModalType('add');
     setFormData({ title: '', code: '', category: 'Tiket Pesawat', discount: '', status: 'Draft', validUntil: '', usageLimit: 0, usageCount: 0, img: '' });
     setIsModalOpen(true);
   };
 
-  // Buka Modal Edit Data
   const handleOpenEdit = (promo: PromoCard) => {
     setModalType('edit');
     setFormData(promo);
     setIsModalOpen(true);
   };
 
-  // Fungsi Hapus Data
   const handleDelete = (id: string) => {
     if (window.confirm("Apakah Anda yakin ingin menghapus promo ini?")) {
       setPromos(promos.filter(p => p.id !== id));
     }
   };
 
-  // Fungsi Simpan Data (Dari Modal)
+  const handleStatusChange = (id: string, newStatus: 'Aktif' | 'Draft' | 'Berakhir') => {
+    setPromos(promos.map(p => p.id === id ? { ...p, status: newStatus } : p));
+  };
+
+  const handleDuplicate = (promo: PromoCard) => {
+    const duplicatedPromo = {
+      ...promo,
+      id: Date.now().toString(),
+      title: `${promo.title} (Copy)`,
+      status: 'Draft' as const, 
+      usageCount: 0
+    };
+    setPromos([...promos, duplicatedPromo]);
+  };
+
   const handleSave = () => {
     if (modalType === 'add') {
       const newPromo = { 
         ...formData, 
         id: Date.now().toString(), 
-        usageCount: 0, // Promo baru mulai dari 0 penggunaan
+        usageCount: 0, 
         img: formData.img || 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=150&q=80' 
       } as PromoCard;
       setPromos([...promos, newPromo]);
@@ -77,7 +88,6 @@ const AdminPromoPage: React.FC = () => {
     setIsModalOpen(false);
   };
 
-  // Logika Filter Data
   const filteredPromos = promos.filter(promo => {
     const matchSearch = promo.title.toLowerCase().includes(localSearch.toLowerCase()) || promo.code.toLowerCase().includes(localSearch.toLowerCase());
     const matchCat = categoryFilter === 'Semua Kategori' || promo.category === categoryFilter;
@@ -94,39 +104,16 @@ const AdminPromoPage: React.FC = () => {
 
         <div className="promo-container">
           
-          {/* HEADER SECTION */}
           <div className="promo-header-section">
             <div className="title-area">
               <h1>Manajemen Promo</h1>
               <p>Kelola kampanye pemasaran, diskon, dan voucher perjalanan.</p>
             </div>
-            {/* Tombol pemicu Modal Tambah */}
             <button className="btn-create-promo" onClick={handleOpenAdd}>
               <FaBullhorn /> Buat Promo Baru
             </button>
           </div>
 
-          {/* STATS CARDS ROW (Disingkat untuk fokus ke CRUD, Anda bisa mempertahankan yang lama) */}
-          <div className="promo-stats-grid">
-            <div className="stat-card">
-              <div className="stat-icon bg-purple-light text-purple"><FaBolt /></div>
-              <div className="stat-info"><p>Promo Aktif</p><h3>{promos.filter(p => p.status === 'Aktif').length}</h3></div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-icon bg-gray-light text-gray"><FaCalendarAlt /></div>
-              <div className="stat-info"><p>Promo Berakhir</p><h3>{promos.filter(p => p.status === 'Berakhir').length}</h3></div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-icon bg-purple-light text-purple"><FaTicketAlt /></div>
-              <div className="stat-info"><p>Total Penggunaan</p><h3>12.5k</h3></div>
-            </div>
-            <div className="stat-card">
-              <div className="stat-icon bg-orange-light text-orange"><FaBullseye /></div>
-              <div className="stat-info"><p>Konversi Promo</p><h3>8.2%</h3></div>
-            </div>
-          </div>
-
-          {/* FILTER & TOOLBAR */}
           <div className="promo-toolbar">
             <div className="toolbar-left">
               <div className="local-search">
@@ -148,7 +135,6 @@ const AdminPromoPage: React.FC = () => {
             </div>
           </div>
 
-          {/* PROMO CARDS GRID */}
           <div className="promo-cards-grid">
             {filteredPromos.map((promo) => {
               const progressPercent = promo.usageLimit > 0 ? (promo.usageCount / promo.usageLimit) * 100 : 0;
@@ -169,7 +155,7 @@ const AdminPromoPage: React.FC = () => {
                       </div>
                       <div className="p-card-details">
                         <div><label>Potongan Harga</label><p className="fw-bold text-purple">{promo.discount}</p></div>
-                        <div><label>Berlaku s/d</label><p className="fw-bold">{promo.validUntil}</p></div>
+                        <div><label>{promo.status === 'Berakhir' ? 'Berakhir pada' : 'Berlaku s/d'}</label><p className="fw-bold">{promo.validUntil}</p></div>
                       </div>
                     </div>
                   </div>
@@ -186,13 +172,43 @@ const AdminPromoPage: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* ACTION BUTTONS (Detail dihapus, Edit & Delete diaktifkan) */}
+                  {/* KODE TOMBOL YANG DIPERBAIKI (TANPA FRAGMENT) */}
                   <div className="p-card-actions">
-                    <button className="btn-outline-primary" onClick={() => handleOpenEdit(promo)}>Edit Promo</button>
-                    {promo.status === 'Aktif' && <button className="btn-text text-red" onClick={() => setPromos(promos.map(p => p.id === promo.id ? {...p, status: 'Berakhir'} : p))}>Hentikan</button>}
-                    {promo.status === 'Draft' && <button className="btn-outline-primary" onClick={() => setPromos(promos.map(p => p.id === promo.id ? {...p, status: 'Aktif'} : p))}>Publikasikan</button>}
-                    <button className="btn-icon-red" onClick={() => handleDelete(promo.id)} title="Hapus"><FaTrash /></button>
+                    
+                    {/* Tombol 1: Detail / Laporan (Akan selalu muncul) */}
+                    <button className="btn-text text-gray">
+                      {promo.status === 'Berakhir' ? 'Laporan' : 'Detail'}
+                    </button>
+                    
+                    {/* Tombol 2: Edit / Publikasikan / Duplikat (Akan selalu muncul dan otomatis berubah) */}
+                    <button 
+                      className="btn-outline-primary" 
+                      onClick={() => {
+                        if (promo.status === 'Aktif') handleOpenEdit(promo);
+                        else if (promo.status === 'Draft') handleStatusChange(promo.id, 'Aktif');
+                        else handleDuplicate(promo);
+                      }}
+                    >
+                      {promo.status === 'Aktif' ? 'Edit' : promo.status === 'Draft' ? 'Publikasikan' : 'Duplikat'}
+                    </button>
+
+                    {/* Tombol 3: Hentikan (Hanya untuk Aktif) */}
+                    {promo.status === 'Aktif' && (
+                      <button className="btn-text text-red" onClick={() => handleStatusChange(promo.id, 'Berakhir')}>
+                        Hentikan
+                      </button>
+                    )}
+
+                    {/* Tombol 3: Hapus (Hanya untuk Draft) */}
+                    {promo.status === 'Draft' && (
+                      <button className="btn-icon-transparent text-red" onClick={() => handleDelete(promo.id)} title="Hapus">
+                        <FaTrash />
+                      </button>
+                    )}
+
                   </div>
+                  {/* AKHIR KODE TOMBOL */}
+
                 </div>
               );
             })}
@@ -201,7 +217,7 @@ const AdminPromoPage: React.FC = () => {
         </div>
       </main>
 
-      {/* MODAL POPUP CRUD */}
+      {/* ... MODAL CRUD TETAP SAMA ... */}
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -242,11 +258,7 @@ const AdminPromoPage: React.FC = () => {
             <div className="form-group-row">
               <div className="form-group">
                 <label>Berlaku S/D</label>
-                <input 
-                  type="date" 
-                  value={formData.validUntil || ''} 
-                  onChange={(e) => setFormData({...formData, validUntil: e.target.value})} 
-                />
+                <input type="date" value={formData.validUntil || ''} onChange={(e) => setFormData({...formData, validUntil: e.target.value})} />
               </div>
               <div className="form-group">
                 <label>Status</label>

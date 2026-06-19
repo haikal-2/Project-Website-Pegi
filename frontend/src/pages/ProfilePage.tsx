@@ -25,6 +25,7 @@ const ProfilePage: React.FC = () => {
         setLoading(false);
       });
   }, []);
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -46,6 +47,8 @@ const ProfilePage: React.FC = () => {
     <div className="profile-layout">
       {/* SIDEBAR KIRI */}
       <aside className="profile-sidebar">
+        
+        {/* BAGIAN YANG DIPERBAIKI: HEADER SIDEBAR */}
         <div className="sidebar-header">
           <span className="sidebar-subtitle">WORKSPACE</span>
           <h2 className="sidebar-title">Traveler Area</h2>

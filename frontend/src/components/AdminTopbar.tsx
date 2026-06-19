@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaSearch, FaBell, FaQuestionCircle, FaCog } from 'react-icons/fa';
+import { FaSearch, FaBell, FaCog } from 'react-icons/fa';
 import './AdminTopbar.css';
 
 // Definisi Jenis Props agar komponen bisa menerima data luar
@@ -38,7 +38,6 @@ const AdminTopbar: React.FC<AdminTopbarProps> = ({
       <div className="topbar-actions">
         <div className="topbar-icons">
           <button className="icon-btn"><FaBell /></button>
-          <button className="icon-btn"><FaQuestionCircle /></button>
           <button className="icon-btn"><FaCog /></button>
         </div>
         

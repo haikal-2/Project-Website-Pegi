@@ -12,7 +12,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ activeMenu }) => {
   return (
     <aside className="admin-sidebar">
       <div className="sidebar-brand">
-        <h2>Pegi</h2>
+        <img src="/public/logo_pegi_72x72.jpeg" alt="Logo Pegi" className="sidebar-logo" />
         <p>Enterprise Admin</p>
       </div>
       <nav className="admin-nav">
@@ -27,7 +27,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ activeMenu }) => {
       </nav>
       <div className="sidebar-bottom">
         <a href="#settings" className="admin-nav-item"><FaCog /> Pengaturan</a>
-        <a href="#logout" className="admin-nav-item text-red"><FaSignOutAlt /> Keluar</a>
+        <a href="/" className="admin-nav-item text-red"><FaSignOutAlt /> Keluar</a>
       </div>
     </aside>
   );
