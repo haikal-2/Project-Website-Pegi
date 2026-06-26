@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import NavbarGuest from "../components/NavbarGuest";
+import NavbarGuest from "../components/Navbar";
 import {
   MdLocationOn,
   MdStar,
@@ -240,7 +240,15 @@ const DestinationDetailPage: React.FC = () => {
                 <p>Temukan teman perjalanan baru dan bagikan pengalamanmu.</p>
               </div>
 
-              <button className="partner-btn">Cari Travel Partner</button>
+              <button
+                onClick={() =>
+                  (window.location.href = `/travel-partner?destination=${encodeURIComponent(
+                    destination.name,
+                  )}`)
+                }
+              >
+                Cari Travel Partner
+              </button>
             </div>
 
             <div className="traveler-list">

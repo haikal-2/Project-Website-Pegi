@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import "./LoginPage.css";
-import NavbarGuest from "../components/NavbarGuest";
+import NavbarGuest from "../components/Navbar";
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState("");

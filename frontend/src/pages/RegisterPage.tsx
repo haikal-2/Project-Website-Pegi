@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import "./RegisterPage.css";
-import NavbarGuest from "../components/NavbarGuest";
+import NavbarGuest from "../components/Navbar";
 
 const RegisterPage: React.FC = () => {
   const [fullName, setFullName] = useState("");

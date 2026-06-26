@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import NavbarGuest from "../components/NavbarGuest";
+import NavbarGuest from "../components/Navbar";
 import {
   MdLocationOn,
   MdWifi,
