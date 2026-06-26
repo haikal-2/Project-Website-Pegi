@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import NavbarGuest from "../components/Navbar";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import {
   MdLocationOn,
   MdStar,
@@ -125,7 +126,7 @@ const HotelSearchPage: React.FC = () => {
 
   return (
     <>
-      <NavbarGuest />
+      <Navbar />
 
       <div className="hotel-search-wrapper">
         <div className="hotel-main-container">
@@ -400,6 +401,7 @@ const HotelSearchPage: React.FC = () => {
           </main>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

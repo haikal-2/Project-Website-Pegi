@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MdLocationOn, MdCalendarToday } from "react-icons/md";
-import NavbarGuest from "../components/Navbar";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 import type { TravelPartnerType } from "../types/TravelPartnerType";
 import { getTravelPartners } from "../services/travelPartnerService";
@@ -30,7 +31,7 @@ const TravelPartnerPage: React.FC = () => {
 
   return (
     <>
-      <NavbarGuest />
+      <Navbar />
       <div className="travel-partner-page">
         <div className="travel-partner-container">
           <div className="travel-partner-header">
@@ -115,6 +116,7 @@ const TravelPartnerPage: React.FC = () => {
           )}
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

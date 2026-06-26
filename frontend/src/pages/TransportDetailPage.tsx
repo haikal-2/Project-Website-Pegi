@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import NavbarGuest from "../components/Navbar";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import BusSeatLayout from "../components/BusSeatLayout";
 import TrainSeatLayout from "../components/TrainSeatLayout";
 import ShuttleSeatLayout from "../components/ShuttleSeatLayout";
@@ -71,7 +72,7 @@ const TransportDetailPage: React.FC = () => {
 
   return (
     <>
-      <NavbarGuest />
+      <Navbar />
 
       <div className="transport-detail-page">
         {/* HERO */}
@@ -218,6 +219,7 @@ const TransportDetailPage: React.FC = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

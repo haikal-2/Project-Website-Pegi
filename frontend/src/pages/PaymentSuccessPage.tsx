@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import NavbarGuest from "../components/Navbar";
+import Navbar from "../components/Navbar";
 
 import "./PaymentSuccessPage.css";
 
@@ -10,7 +10,7 @@ const PaymentSuccessPage: React.FC = () => {
 
   return (
     <>
-      <NavbarGuest />
+      <Navbar />
 
       <div className="payment-success-page">
         <div className="success-card">

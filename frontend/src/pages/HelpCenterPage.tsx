@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { getFAQs } from "../services/faqService";
 import type { FAQType } from "../types/FAQType";
-
+import  Navbar from "../components/Navbar";
+import  Footer from "../components/Footer";
 import {
   MdHotel,
   MdDirectionsBus,
@@ -12,7 +13,7 @@ import {
 } from "react-icons/md";
 
 import "./HelpCenterPage.css";
-import Navbar from "../components/Navbar";
+
 
 const HelpCenterPage: React.FC = () => {
   const faqSectionRef = useRef<HTMLElement>(null);
@@ -275,6 +276,7 @@ const HelpCenterPage: React.FC = () => {
           </div>
         </section>
       </div>
+      <Footer/>
     </>
   );
 };

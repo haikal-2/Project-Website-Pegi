@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import NavbarGuest from "../components/Navbar";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import {
   MdLocationOn,
   MdStar,
@@ -68,7 +69,7 @@ const DestinationDetailPage: React.FC = () => {
 
   return (
     <>
-      <NavbarGuest />
+      <Navbar />
 
       <div className="destination-detail-page">
         {/* HERO */}
@@ -267,6 +268,7 @@ const DestinationDetailPage: React.FC = () => {
           </section>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

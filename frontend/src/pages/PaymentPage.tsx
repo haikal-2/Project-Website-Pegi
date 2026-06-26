@@ -1,5 +1,6 @@
 import React from "react";
-import NavbarGuest from "../components/Navbar";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 import ContactForm from "../components/payment/ContactForm";
 import TravelerForm from "../components/payment/TravelerForm";
@@ -17,7 +18,7 @@ const PaymentPage: React.FC = () => {
 
   return (
     <>
-      <NavbarGuest />
+      <Navbar />
 
       <div className="payment-page">
         <div className="payment-left">
@@ -32,6 +33,7 @@ const PaymentPage: React.FC = () => {
           <PaymentSummary transportId={transportId} seats={selectedSeats} />
         </div>
       </div>
+      <Footer/>
     </>
   );
 };
