@@ -10,6 +10,8 @@ import HotelDetailPage from "./pages/HotelDetailPage";
 import DestinationSearchPage from "./pages/DestinationSearchPage";
 import DestinationDetailPage from "./pages/DestinationDetailPage";
 
+import LegalPage from "./pages/LegalPage";
+
 import TransportSearchPage from "./pages/TransportSearchPage";
 
 import ProfilePage from "./pages/ProfilePage";
@@ -68,6 +70,9 @@ function App() {
 
         {/* RUTE OBROLAN STATIS (ID) */}
         <Route path="/grup/chat" element={<GrupChat />} />
+
+        {/* Legal Page*/}
+        <Route path="/legal" element={<LegalPage />} />
 
         {/* Rute Admin */}
         <Route path="/admin" element={<AdminDashboard />} />
