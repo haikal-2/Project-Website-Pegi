@@ -64,7 +64,7 @@ const Footer = () => {
         <div className="footer-column">
           <h4>Tentang</h4>
 
-          <a href="//help-center">Tentang Kami</a>
+          <a href="/legal">Tentang Kami</a>
 
         </div>
 
